@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+</head>
+<body>
+    <h1>Welcome to Cookie</h1>
+    <button onclick="setCookie()">Set Cookie</button>
+    <p>Cookie Value: <span id="cookieValue"></span></p>
+    <p>Cookies Set: <span id="cookieCount">0</span></p>
+
+    <script>
+        function setCookie() {
+            var cookieName = "example_cookie";
+            var cookieValue = "Hello, this is a cookie!";
+            var existingCookies = document.cookie;
+
+            if (existingCookies.indexOf(cookieName) === -1) {
+                document.cookie = cookieName + "=" + cookieValue;
+            }
+            
+            var cookies = existingCookies.split(';');
+            var cookieCount = 0;
+
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.indexOf("example_cookie=") === 0) {
+                    cookieCount++;
+                }
+            }
+
+            document.getElementById("cookieCount").textContent = cookieCount;
+
+            document.getElementById("cookieValue").textContent = cookieValue;
+        }
+        window.onload = function () {
+            var cookies = document.cookie.split(';');
+            var cookieCount = 0;
+
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.indexOf("example_cookie=") === 0) {
+                    cookieCount++;
+                }
+            }
+
+            document.getElementById("cookieCount").textContent = cookieCount;
+        }
+    </script>
+</body>
+</html>
